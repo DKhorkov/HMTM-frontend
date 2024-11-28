@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  hmtmbff:
+    container_name: hmtm-ui
+    image: hmtm-ui
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:3000"
