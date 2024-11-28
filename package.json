@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "compile": "graphql-codegen",
-    "watch": "graphql-codegen -w"
+    "gql-compile": "graphql-codegen",
+    "gql-watch": "graphql-codegen -w"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",

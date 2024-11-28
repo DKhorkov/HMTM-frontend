@@ -1,0 +1,58 @@
+version: "3"
+
+tasks:
+  help:
+    desc: "Show help message"
+    cmds:
+      - echo "task help                     - Show this help message."
+      - echo "task graphql                  - Generate GraphQL base files."
+      - echo "task build                    - Builds docker container."
+      - echo "task run                      - Launches docker container."
+      - echo "task start                    - Docker build and run."
+      - echo "task dev                      - Launch app in dev mode."
+      - echo "task clean                    - Cleans docker containers, images and volumes."
+
+  docker_build:
+    desc: "Build docker container"
+    aliases:
+      - build
+    cmd: docker compose -f ./docker/docker-compose.yml build
+
+  docker_run:
+    desc: "Launch docker container"
+    aliases:
+      - run
+    cmd: docker compose -f ./docker/docker-compose.yml up -d
+
+  docker_start:
+    desc: "Docker build and run"
+    aliases:
+      - start
+    cmds:
+      - task: docker_build
+      - task: docker_run
+
+  graphql_compile:
+    desc: "Compile graphql files"
+    aliases:
+      - graphql
+    cmd: "pnpm gql-watch"
+
+  dev:
+    desc: "Run application in dev mode"
+    cmds:
+      - cmd: "pnpm install"
+      - task: graphql_compile
+      - cmd: "pnpm run dev"
+
+  docker_stop:
+    desc: "Stop all docker containers."
+    cmd: docker stop $(docker ps -a -q)
+
+  docker_clean:
+    desc: "Clean docker containers, images and volumes"
+    aliases:
+      - clean
+    cmds:
+      - task: docker_stop
+      - cmd: docker system prune -a --volumes
