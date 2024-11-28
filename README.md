@@ -4,13 +4,14 @@ To run application in dev mode, you'll need to install **[pnpm](https://pnpm.io/
 
 ```bash
 cp .env.example .env.local
-Fill env variables
 ```
+
+Fill env variables
 
 #### Dev mode:
 
 ```bash
-task dev -v
+task -p dev gql
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

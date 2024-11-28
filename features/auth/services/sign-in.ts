@@ -12,6 +12,7 @@ const SIGN_IN = gql(`
   mutation LoginUser($input: LoginUserInput!) {
     loginUser(input: $input) {
       accessToken
+      refreshToken
     }
   }
 `);

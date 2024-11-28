@@ -35,14 +35,13 @@ tasks:
   graphql_compile:
     desc: "Compile graphql files"
     aliases:
-      - graphql
+      - gql
     cmd: "pnpm gql-watch"
 
   dev:
     desc: "Run application in dev mode"
     cmds:
       - cmd: "pnpm install"
-      - task: graphql_compile
       - cmd: "pnpm run dev"
 
   docker_stop:
