@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/button";
+import { SignInCard } from "@/features/auth/components/SignInCard";
 
 const Login = () => {
-  return <Button>Login</Button>;
+  return <SignInCard />;
 };
 
 export default Login;

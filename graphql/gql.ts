@@ -11,9 +11,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
-    "\n  mutation RegisterUser($input: RegisterUser!) {\n    registerUser(input: $input)\n  }\n": types.RegisterUserDocument,
+    "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n    }\n  }\n": types.LoginUserDocument,
+    "\n  mutation RegisterUser($input: RegisterUserInput!) {\n    registerUser(input: $input)\n  }\n": types.RegisterUserDocument,
 };
 
 /**
@@ -33,7 +35,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  mutation RegisterUser($input: RegisterUser!) {\n    registerUser(input: $input)\n  }\n"): (typeof documents)["\n  mutation RegisterUser($input: RegisterUser!) {\n    registerUser(input: $input)\n  }\n"];
+export function gql(source: "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n    }\n  }\n"): (typeof documents)["\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation RegisterUser($input: RegisterUserInput!) {\n    registerUser(input: $input)\n  }\n"): (typeof documents)["\n  mutation RegisterUser($input: RegisterUserInput!) {\n    registerUser(input: $input)\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

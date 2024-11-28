@@ -17,31 +17,43 @@ export type Scalars = {
   Time: { input: any; output: any; }
 };
 
-export type LoginUser = {
+export type LoginUserInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  loginUser: Scalars['String']['output'];
+  loginUser: Tokens;
+  refreshTokens: Tokens;
   registerUser: Scalars['Int']['output'];
 };
 
 
 export type MutationLoginUserArgs = {
-  input?: InputMaybe<LoginUser>;
+  input: LoginUserInput;
+};
+
+
+export type MutationRefreshTokensArgs = {
+  input: RefreshTokensInput;
 };
 
 
 export type MutationRegisterUserArgs = {
-  input: RegisterUser;
+  input: RegisterUserInput;
 };
 
 export type Query = {
   __typename?: 'Query';
-  user?: Maybe<User>;
+  me: User;
+  user: User;
   users: Array<User>;
+};
+
+
+export type QueryMeArgs = {
+  accessToken: Scalars['String']['input'];
 };
 
 
@@ -49,8 +61,20 @@ export type QueryUserArgs = {
   id: Scalars['ID']['input'];
 };
 
-export type RegisterUser = {
-  credentials: LoginUser;
+export type RefreshTokensInput = {
+  accessToken: Scalars['String']['input'];
+  refreshToken: Scalars['String']['input'];
+};
+
+export type RegisterUserInput = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+export type Tokens = {
+  __typename?: 'Tokens';
+  accessToken: Scalars['String']['output'];
+  refreshToken: Scalars['String']['output'];
 };
 
 export type User = {
@@ -61,12 +85,20 @@ export type User = {
   updatedAt: Scalars['Time']['output'];
 };
 
+export type LoginUserMutationVariables = Exact<{
+  input: LoginUserInput;
+}>;
+
+
+export type LoginUserMutation = { __typename?: 'Mutation', loginUser: { __typename?: 'Tokens', accessToken: string } };
+
 export type RegisterUserMutationVariables = Exact<{
-  input: RegisterUser;
+  input: RegisterUserInput;
 }>;
 
 
 export type RegisterUserMutation = { __typename?: 'Mutation', registerUser: number };
 
 
-export const RegisterUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RegisterUser"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}]}]}}]} as unknown as DocumentNode<RegisterUserMutation, RegisterUserMutationVariables>;
+export const LoginUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LoginUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"loginUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"accessToken"}}]}}]}}]} as unknown as DocumentNode<LoginUserMutation, LoginUserMutationVariables>;
+export const RegisterUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RegisterUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}]}]}}]} as unknown as DocumentNode<RegisterUserMutation, RegisterUserMutationVariables>;
