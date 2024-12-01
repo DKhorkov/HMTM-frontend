@@ -1,4 +1,4 @@
-import { SignUpCard } from "@/features/auth/components/SignUpCard";
+import { SignUpCard } from "@/features/auth/components/sign-up-card";
 
 const Register = () => {
   return <SignUpCard />;

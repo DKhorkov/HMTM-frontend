@@ -19,18 +19,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useRegister } from "../services/sign-up";
 
-export const SignUpCard = () => {
-  const { form, onSubmit, loading } = useRegister();
+import { useLoginForm } from "../model/sign-in";
+
+export const SignInCard = () => {
+  const { form, loading, onSubmit } = useLoginForm();
 
   return (
     <Card className="max-w-[440px] w-[95vw]">
-      <CardHeader className="items-center">
-        <CardTitle>Регистрация</CardTitle>
-        <CardDescription>
-          Пожалуйста введите данные для регистрации
-        </CardDescription>
+      <CardHeader className="text-center">
+        <CardTitle>С возвращением</CardTitle>
+        <CardDescription>Пожалуйста, введите данные для входа</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -69,7 +68,7 @@ export const SignUpCard = () => {
 
             <div className="flex justify-center pt-2.5">
               <Button type="submit" className="w-full" loading={loading}>
-                Создать аккаунт
+                Войти
               </Button>
             </div>
           </form>
@@ -77,8 +76,10 @@ export const SignUpCard = () => {
       </CardContent>
       <CardFooter className="justify-center">
         <p>
-          <span className="text-muted-foreground">Уже есть аккаунт?</span>{" "}
-          <Link href="/login">Войти</Link>
+          <span className="text-muted-foreground">Еще нет аккаунта?</span>{" "}
+          <Link href="/register" className="link">
+            Создать
+          </Link>
         </p>
       </CardFooter>
     </Card>

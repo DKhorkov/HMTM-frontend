@@ -88,7 +88,7 @@ p {
   @apply leading-7 [&:not(:first-child)]:mt-6;
 }
 
-a {
+.link {
   @apply font-medium underline underline-offset-4 hover:text-blue-500;
 }
 

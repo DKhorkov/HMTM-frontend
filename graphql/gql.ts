@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
+    "\n  query GetMe($accessToken: String!) {\n    me(accessToken: $accessToken) {\n      id\n      email\n    }\n  }\n": types.GetMeDocument,
     "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n      refreshToken\n    }\n  }\n": types.LoginUserDocument,
     "\n  mutation RegisterUser($input: RegisterUserInput!) {\n    registerUser(input: $input)\n  }\n": types.RegisterUserDocument,
 };
@@ -32,6 +33,10 @@ const documents = {
  */
 export function gql(source: string): unknown;
 
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query GetMe($accessToken: String!) {\n    me(accessToken: $accessToken) {\n      id\n      email\n    }\n  }\n"): (typeof documents)["\n  query GetMe($accessToken: String!) {\n    me(accessToken: $accessToken) {\n      id\n      email\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
